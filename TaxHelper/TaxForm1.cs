@@ -26,15 +26,11 @@ namespace TaxHelper
 
         private void TaxForm1_Load(object sender, EventArgs e)
         {
-            //cmSalary.SelectedIndex = 0;
 
             
         }
-        public void test()
-        {
 
-        }
-
+        //Calculate weekly pay based on hourly rate and hours per week
         private double calculateWeekly()
         {
             double weeklyPay = 0;
@@ -62,10 +58,12 @@ namespace TaxHelper
             {
                 weeklyPay = calculateWeekly();
             }
+            //Preventes messagebox showing when textbox is empty
             else if (tb.Text != "")
             {
                 weeklyPay = calculateWeekly();
             }
+            //Change salary amount based on what salary period is selected.
             switch(salaryPeriod)
             {
                 case "Fortnightly":
@@ -83,15 +81,18 @@ namespace TaxHelper
             }
         }
 
+        //Event handler for when textbox text has been changed
         private void textChanged(object sender, EventArgs e)
         {
             TextBox tb = sender as TextBox;
+            //Check if textbox exists
             if (tb != null)
             {
                 calculateSalary(cmSalary.Text, tb);
             }
         }
 
+        //Single handler for Combobox, when changed it calculates again
         private void cmSalary_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculateSalary(cmSalary.Text);
